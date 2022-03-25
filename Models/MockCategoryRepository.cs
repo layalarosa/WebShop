@@ -10,9 +10,9 @@ namespace WebShop.Models
         public IEnumerable<Category> AllCategories =>
             new List<Category>
             {
-                new Category{CategoryId=1, CategoryName="Accion", Description="Lorem"},
-                new Category{CategoryId=2, CategoryName="Aventura", Description="Lorem"},
-                new Category{CategoryId=3, CategoryName="Terror", Description="Lorem"}
+                new Category{CategoryId=1, CategoryName="Accion", Description="Lorem Ipsum"},
+                new Category{CategoryId=2, CategoryName="Action-Aventura", Description="Lorem Ipsum"},
+                new Category{CategoryId=3, CategoryName="Action-Terror", Description="Lorem Ipsum"}
 
             };
     }

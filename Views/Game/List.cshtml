@@ -1,22 +1,22 @@
-﻿@model IEnumerable<WebShop.Models.Game>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web Shop</title>
+﻿@model WebShop.ViewModels.GamesListViewModel
 
-</head>
-<body>
-    @foreach (var game in Model)
-    {
-        <div>
-            <h2>@game.Name</h2>
-            <h3>@game.Price.ToString("c")</h3>
-            @*<h4>@game.Category.CategoryName</h4>*@
+<h1>@ViewBag.CurrentCategory</h1>
+@foreach (var game in Model.Games)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@game.ImageThumbnailUrl" alt="">
+            <div class="caption">
+                <h3 class="pull-right">@game.Price.ToString("c")</h3>
+                <h3>
+                    <h3>
+                        <a asp-controller="Game" asp-action="Details" asp-route-id="@game.GameId">@game.Name</a>
+                    </h3>
+                </h3>
+            <p>@game.ShortDescription</p>
         </div>
+    </div>
+</div>
 
-    }
+}
 
-</body>
-</html>
