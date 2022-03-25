@@ -30,7 +30,12 @@ namespace WebShop
             services.AddControllersWithViews();
             services.AddScoped<IGameRepository, MockGameRepository>();
             services.AddScoped<ICategoryRepository, MockCategoryRepository>();
-            
+
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+
+            services.AddHttpContextAccessor();
+            services.AddSession();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +53,7 @@ namespace WebShop
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

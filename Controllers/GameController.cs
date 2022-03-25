@@ -21,16 +21,40 @@ namespace WebShop.Controllers
         }
 
         // GET: /<controller>/
-        public ViewResult List()
+        //public ViewResult List()
+        //{
+        //ViewBag.CurrentCategory = "Action";
+
+        //return View(_gameRepository.AllGames);
+        //GamesListViewModel gamesListViewModel = new GamesListViewModel();
+        //gamesListViewModel.Games = _gameRepository.AllGames;
+
+        //gamesListViewModel.CurrentCategory = "All Games";
+        //return View(gamesListViewModel);
+        //}
+
+        public ViewResult List(string category)
         {
-            //ViewBag.CurrentCategory = "Action";
+            IEnumerable<Game> games;
+            string currentCategory;
 
-            //return View(_gameRepository.AllGames);
-            GamesListViewModel gamesListViewModel = new GamesListViewModel();
-            gamesListViewModel.Games = _gameRepository.AllGames;
+            if (string.IsNullOrEmpty(category))
+            {
+                games = _gameRepository.AllGames.OrderBy(p => p.GameId);
+                currentCategory = "All Games";
+            }
+            else
+            {
+                games = _gameRepository.AllGames.Where(p => p.Category.CategoryName == category)
+                    .OrderBy(p => p.GameId);
+                currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+            }
 
-            gamesListViewModel.CurrentCategory = "Action";
-            return View(gamesListViewModel);
+            return View(new GamesListViewModel
+            {
+                Games = games,
+                CurrentCategory = currentCategory
+            });
         }
 
         public IActionResult Details(int id)

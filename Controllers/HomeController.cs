@@ -6,21 +6,29 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebShop.Models;
+using WebShop.ViewModels;
 
 namespace WebShop.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IGameRepository _gameRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IGameRepository gameRepository)
         {
             _logger = logger;
+            _gameRepository = gameRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                GamesOfTheWeek = _gameRepository.GamesOfTheWeek
+            };
+
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()

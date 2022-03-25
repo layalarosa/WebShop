@@ -2,25 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebShop</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] WebShop</title>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
-    <link rel="stylesheet" href="~/css/site.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
 </head>
 <body>
     <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        @await Component.InvokeAsync("CategoryMenu")
+                        <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                        @await Component.InvokeAsync("ShoppingCartSummary")
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <div class="row">
             <div class="col-md-3">
                 <p class="lead">
-                    @*<img class="img-responsive" alt="WebShop'" src="~/Images/ImagenJuegos.jpg" />*@
+                    <img class="img-responsive" alt="Web Shop'" src="~/Images/Logo.png" />
                 </p>
             </div>
             <div class="col-md-9">
                 @RenderBody()
             </div>
         </div>
+    </div>
 </body>
 </html>
