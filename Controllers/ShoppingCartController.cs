@@ -13,9 +13,9 @@ namespace WebShop.Controllers
         private readonly IGameRepository _gameRepository;
         private readonly ShoppingCart _shoppingCart;
 
-        public ShoppingCartController(IGameRepository pieRepository, ShoppingCart shoppingCart)
+        public ShoppingCartController(IGameRepository gameRepository, ShoppingCart shoppingCart)
         {
-            _gameRepository = pieRepository;
+            _gameRepository = gameRepository;
             _shoppingCart = shoppingCart;
         }
 
