@@ -21,3 +21,11 @@ Creating controllers such as BookController and UserController that handle clien
 Views (Razor Pages):
 Views that allow users to interact with the application (book search form, user details, etc.).
 Responsive design for a good experience on mobile devices.
+
+Project Benefits
+
+Scalability: ASP.NET Core and SQL Server allow you to handle large amounts of data and increase capacity as needed.
+
+Ease of Maintenance: Separating presentation logic from business logic makes it easy to add new functionality or change components.
+
+Efficiency: Entity Framework simplifies database management and reduces the amount of code needed to interact with it.
