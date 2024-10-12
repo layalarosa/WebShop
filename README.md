@@ -29,3 +29,8 @@ Scalability: ASP.NET Core and SQL Server allow you to handle large amounts of da
 Ease of Maintenance: Separating presentation logic from business logic makes it easy to add new functionality or change components.
 
 Efficiency: Entity Framework simplifies database management and reduces the amount of code needed to interact with it.
+
+
+10/12/2024 Update on the way v.1.0
+
+We will be improving the code as well as creating a new user interface for this test project.
