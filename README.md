@@ -29,3 +29,5 @@ Scalability: ASP.NET Core and SQL Server allow you to handle large amounts of da
 Ease of Maintenance: Separating presentation logic from business logic makes it easy to add new functionality or change components.
 
 Efficiency: Entity Framework simplifies database management and reduces the amount of code needed to interact with it.
+
+You need to add these two files, appsettings.json and appsettings.Development.json, to your project on your machine, as well as the connection string and then the Update-Database command.
