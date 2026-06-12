@@ -1,33 +1,47 @@
-Web Application MVC
+WebShop
+=======
 
-ASP.NET Core 3.0 contains many new features that make it easier for developers to build applications with ASP.NET Core MVC. 
-We will create a web application with ASP.NET Core MVC. First, how to set up an ASP.NET Core MVC project. How to create multiple pages that connect to a database using Entity Framework Core. 
-To create these pages, we used Razor, tag helpers, layouts, and view components. 
-How to authenticate users using ASP.NET Identity. ASP.NET Core MVC for building real-world web applications.
+Lightweight ASP.NET Core 3.1 sample e-commerce site (games store).
 
-Web Application MVC
+Summary
+-------
+- ASP.NET Core 3.1 MVC app with Identity and Entity Framework Core (SQL Server).
+- Uses a simple domain: Game, Category, ShoppingCart, Order, Identity users.
+- Project path: WebShop (target framework netcoreapp3.1)
 
-ASP.NET Core 8.0 contains many new features that make it easier for developers to build applications with ASP.NET Core MVC. We will create a web application with ASP.NET Core MVC. First, how to set up an ASP.NET Core MVC project. How to create multiple pages that connect to a database using Entity Framework Core. To create these pages, we used Razor, tag helpers, layouts, and view components. How to authenticate users using ASP.NET Identity. ASP.NET Core MVC for building real-world web applications.
+Prerequisites
+-------------
+- .NET Core SDK 3.1 installed
+- (Recommended) LocalDB or SQL Server instance to host the database
+- Optional: Visual Studio 2019/2022/2026 or VS Code
 
-Project Structure
+Configuration
+-------------
+- The application reads the connection string from appsettings.json (key: ConnectionStrings:DefaultConnection).
+- By default appsettings.json points to LocalDB (Server=(localdb)\\mssqllocaldb;Database=WebShopDb;...)
+- appsettings.Development.json contains only logging settings and will not override the connection string.
+- appsettings.json and appsettings.Development.json are ignored by Git (see .gitignore). Do not commit secrets.
 
-Model (Entity Framework):
-Defining entity classes such as Book, User, Loan, and Return.
-Setting up relationships between entities and mapping to SQL tables.
+Database
+--------
+- To create the database and apply migrations (from project root):
+  dotnet ef database update
 
-Controllers (ASP.NET Core MVC):
-Creating controllers such as BookController and UserController that handle client requests and return views or JSON data.
+Run the app
+----------
+- From project root:
+  dotnet run
+- Or run from Visual Studio.
 
-Views (Razor Pages):
-Views that allow users to interact with the application (book search form, user details, etc.).
-Responsive design for a good experience on mobile devices.
+Notes & troubleshooting
+-----------------------
+- If you see SQL login errors, either switch the connection string to LocalDB, or add your Windows account to SQL Server logins and grant appropriate permissions.
+- The UI was updated to use Bootstrap 5. Some old Bootstrap 3 markup may need small adjustments.
 
-Project Benefits
+Contributing
+------------
+- Fixes and improvements are welcome. Keep appsettings out of commits.
 
-Scalability: ASP.NET Core and SQL Server allow you to handle large amounts of data and increase capacity as needed.
-
-Ease of Maintenance: Separating presentation logic from business logic makes it easy to add new functionality or change components.
-
-Efficiency: Entity Framework simplifies database management and reduces the amount of code needed to interact with it.
-
-You need to add these two files, appsettings.json and appsettings.Development.json, to your project on your machine, as well as the connection string and then the Update-Database command.
+License
+-------
+- See project files. No license file included by default.

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using WebShop.Models;
 
@@ -13,11 +11,13 @@ namespace WebShop.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
+        private readonly ILogger<OrderController> _logger;
 
-        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
+        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart, ILogger<OrderController> logger)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
+            _logger = logger;
         }
 
         // GET: /<controller>/
@@ -27,7 +27,8 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout(Order order)
         {
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
@@ -39,8 +40,9 @@ namespace WebShop.Controllers
 
             if (ModelState.IsValid)
             {
-                _orderRepository.CreateOrder(order);
+                await _orderRepository.CreateOrderAsync(order);
                 _shoppingCart.ClearCart();
+                _logger.LogInformation("Checkout completed for order by {Email}", order.Email);
                 return RedirectToAction("CheckoutComplete");
             }
             return View(order);

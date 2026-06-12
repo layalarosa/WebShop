@@ -1,98 +1,80 @@
-﻿/*!
- * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
+﻿/* Modernized site styles - kept selectors to minimize view changes */
 
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    background-image: url('/images/Background.png');
-    background-repeat: repeat;
-    font-family: 'Source Sans Pro', sans-serif;
+:root{
+    --bg:#0f1724; /* deep slate */
+    --card:#0b1220;
+    --muted:#9aa4b2;
+    --accent:#ff6b6b;
+    --accent-2:#ff9b9b;
+    --glass: rgba(255,255,255,0.04);
+    --radius:12px;
 }
 
-
-.slide-image {
-    width: 100%;
+body{
+    padding-top:72px;
+    margin:0;
+    font-family: 'Source Sans Pro', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #091021 0%, #07121a 100%);
+    color:#e6eef6;
+    -webkit-font-smoothing:antialiased;
 }
 
-.carousel-holder {
-    margin-bottom: 30px;
+/* Navbar modern look */
+.navbar{
+    background: linear-gradient(90deg, rgba(7,10,14,0.9), rgba(10,14,20,0.85));
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 4px 18px rgba(2,6,23,0.6);
 }
 
-.carousel-control,
-.item {
-    border-radius: 4px;
+.navbar .navbar-nav > li > a{ color:#f7fafc; font-weight:600; padding:14px 16px; }
+.nav.navbar-nav.navbar-right li a{ color:#f7fafc; }
+
+/* Logo area */
+.lead img{ max-width:160px; height:auto; display:block; }
+
+/* Product cards / thumbnails */
+.thumbnail{
+    padding:0; background:var(--card); border-radius:var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.03);
+    transition:transform .18s ease, box-shadow .18s ease;
+}
+.thumbnail:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(2,6,23,0.6); }
+
+.thumbnail img{ width:100%; height:200px; object-fit:cover; display:block; }
+
+.caption{ padding:14px; color:var(--muted); }
+.caption h4{ color:#ffffff; margin:0 0 6px 0; font-size:1.125rem; }
+.caption .caption-full{ color:var(--muted); font-size:0.95rem; }
+
+/* Buttons */
+.btn{ border-radius:8px; padding:10px 14px; font-weight:600; }
+.btn-primary{
+    background:linear-gradient(180deg,var(--accent),var(--accent-2));
+    border:0; color:#0b1220; box-shadow:0 6px 18px rgba(255,107,107,0.18);
+}
+.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 30px rgba(255,107,107,0.15); }
+
+.addToCart{ padding-left:10px; padding-right:10px; }
+
+/* Carousel adjustments */
+.carousel .item{ height:360px; }
+.item img{ position:relative; top:0; left:0; min-height:360px; object-fit:cover; }
+
+/* Footer */
+footer{ margin:60px 0; color:var(--muted); }
+
+/* Shopping cart summary badge */
+.shopping-cart-badge{ background:var(--accent); color:white; border-radius:12px; padding:2px 8px; font-weight:700; font-size:0.85rem; }
+
+/* Forms */
+input, textarea{ background:var(--glass); border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:10px; border-radius:8px; }
+
+/* Responsive tweaks */
+@media (max-width:767px){
+    body{ padding-top:64px; }
+    .caption h4{ font-size:1rem; }
+    .item img{ min-height:200px; }
 }
 
-.caption {
-    height: 130px;
-    overflow: hidden;
-}
+/* Utility */
+.text-muted{ color:var(--muted) !important; }
 
-    .caption h4 {
-        white-space: nowrap;
-    }
-
-.thumbnail img {
-    width: 100%;
-}
-
-.addToCart {
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-.thumbnail {
-    padding: 0;
-}
-
-    .thumbnail .caption-full {
-        padding: 9px;
-        color: #333;
-    }
-
-footer {
-    margin: 50px 0;
-}
-
-.navbar {
-    background-image: none;
-}
-
-.navbar-inverse {
-    background-color: #000000;
-    border-color: #000000;
-}
-
-.nav.navbar-nav.navbar-right li a {
-    color: white;
-    font-size: 1.2em;
-}
-
-.navbar .nav > li > a {
-    font-size: 1.2em;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    color: white;
-}
-
-.carousel .item {
-    height: 400px;
-}
-
-.item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-height: 400px;
-}
-
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-    background-color: #fcaeae !important;
-    border-color: #fba1a1 !important;
-}
-
-.btn {
-    background-color: #fcaeae !important;
-    border-color: #fba1a1 !important;
-}

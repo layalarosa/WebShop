@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace WebShop.Models
 {
     public interface IOrderRepository
     {
-        void CreateOrder(Order order);
+        Task CreateOrderAsync(Order order);
     }
 }

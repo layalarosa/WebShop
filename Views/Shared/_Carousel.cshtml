@@ -1,28 +1,30 @@
-﻿<div class="row carousel-holder">
-    <div class="col-md-12">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img class="slide-image" src="~/Images/Vanguard.jpg" alt="">
+﻿<div class="row carousel-holder mb-4">
+    <div class="col-12">
+        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                    <img src="~/Images/Vanguard.jpg" class="d-block w-100" alt="Vanguard">
                 </div>
-                <div class="item">
-                    <img class="slide-image" src="~/Images/GodofWarRagnarok.jpg" alt="">
+                <div class="carousel-item">
+                    <img src="~/Images/GodofWarRagnarok.jpg" class="d-block w-100" alt="God of War">
                 </div>
-                <div class="item">
-                    <img class="slide-image" src="~/Images/halo.jpg" alt="">
+                <div class="carousel-item">
+                    <img src="~/Images/halo.jpg" class="d-block w-100" alt="Halo">
                 </div>
             </div>
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
 </div>

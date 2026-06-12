@@ -1,23 +1,16 @@
-﻿@model Game
-<div class="col-sm-4 col-lg-4 col-md-4">
-    <div class="thumbnail">
-        <img src="@Model.ImageThumbnailUrl" alt="">
-        <div class="caption">
-            <h3 class="pull-right">@Model.Price.ToString("c")</h3>
-            <h3>
-                <a asp-controller="Game"
-                   asp-action="Details"
-                   asp-route-id="@Model.GameId">@Model.Name</a>
-            </h3>
-            <p>@Model.ShortDescription</p>
+﻿@model WebShop.Models.Game
+<div class="col-sm-6 col-md-4 mb-4">
+    <div class="card h-100">
+        <img src="@Model.ImageThumbnailUrl" class="card-img-top" alt="@Model.Name" />
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <h5 class="card-title mb-0">@Model.Name</h5>
+                <span class="badge bg-primary">@Model.Price.ToString("c")</span>
+            </div>
+            <p class="card-text text-muted">@Model.ShortDescription</p>
         </div>
-        <div class="addToCart">
-            <p class="button">
-                <a class="btn btn-primary"
-                   asp-controller="ShoppingCart"
-                   asp-action="AddToShoppingCart"
-                   asp-route-gameId="@Model.GameId">Add to cart</a>
-            </p>
+        <div class="card-footer bg-transparent border-0">
+            <a class="btn btn-primary w-100" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-gameId="@Model.GameId">Add to cart</a>
         </div>
     </div>
 </div>

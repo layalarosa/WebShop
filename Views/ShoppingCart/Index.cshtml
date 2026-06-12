@@ -1,39 +1,37 @@
-﻿@model ShoppingCartViewModel
+﻿@model WebShop.ViewModels.ShoppingCartViewModel
 
-<h2>Your shopping cart</h2>
+<h2 class="mb-4">Your shopping cart</h2>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Selected amount</th>
-            <th>Game</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
-        {
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead class="table-light">
             <tr>
-                <td class="text-center">@line.Amount</td>
-                <td class="text-left">@line.Game.Name</td>
-                <td class="text-right">@line.Game.Price.ToString("c")</td>
-                <td class="text-right">
-                    @((line.Amount * line.Game.Price).ToString("c"))
-                </td>
+                <th style="width:100px;">Qty</th>
+                <th>Game</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Subtotal</th>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total:</td>
-            <td class="text-right">
-                @Model.ShoppingCartTotal.ToString("c")
-            </td>
-        </tr>
-    </tfoot>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center">@line.Amount</td>
+                    <td>@line.Game.Name</td>
+                    <td class="text-end">@line.Game.Price.ToString("c")</td>
+                    <td class="text-end">@((line.Amount * line.Game.Price).ToString("c"))</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end fw-bold">Total:</td>
+                <td class="text-end fw-bold">@Model.ShoppingCartTotal.ToString("c")</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 
-<div class="text-center">
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+<div class="d-flex justify-content-center mt-4">
+    <a class="btn btn-primary btn-lg" asp-controller="Order" asp-action="Checkout">Check out now!</a>
 </div>

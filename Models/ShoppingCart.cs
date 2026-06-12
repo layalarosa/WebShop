@@ -12,6 +12,8 @@ namespace WebShop.Models
     {
         private readonly AppDbContext _appDbContext;
 
+        public const string CartSessionKey = "CartId";
+
         public string ShoppingCartId { get; set; }
 
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
@@ -28,9 +30,9 @@ namespace WebShop.Models
 
             var context = services.GetService<AppDbContext>();
 
-            string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+            string cartId = session.GetString(CartSessionKey) ?? Guid.NewGuid().ToString();
 
-            session.SetString("CartId", cartId);
+            session.SetString(CartSessionKey, cartId);
 
             return new ShoppingCart(context) { ShoppingCartId = cartId };
         }

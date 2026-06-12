@@ -1,20 +1,17 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<WebShop.Models.Category>
 
-<li class="dropdown">
-    <a asp-controller="Game"
-       asp-action="Index"
-       class="dropdown-toggle" data-toggle="dropdown">Games<b class="caret"></b></a>
-    <ul class="dropdown-menu">
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="gamesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Games</a>
+    <ul class="dropdown-menu" aria-labelledby="gamesDropdown">
         @foreach (var category in Model)
         {
             <li>
-                <a asp-controller="Game" asp-action="List"
-                   asp-route-category="@category.CategoryName">@category.CategoryName</a>
+                <a class="dropdown-item" asp-controller="Game" asp-action="List" asp-route-category="@category.CategoryName">@category.CategoryName</a>
             </li>
         }
-        <li class="divider"></li>
+        <li><hr class="dropdown-divider" /></li>
         <li>
-            <a asp-controller="Game" asp-action="List" asp-route-Category="">View all games</a>
+            <a class="dropdown-item" asp-controller="Game" asp-action="List" asp-route-Category="">View all games</a>
         </li>
     </ul>
 </li>

@@ -16,9 +16,12 @@ namespace WebShop
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _env;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -26,11 +29,31 @@ namespace WebShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+            // Resolve connection string with sensible development fallback
+            var conn = Configuration.GetConnectionString("DefaultConnection");
+            if (string.IsNullOrWhiteSpace(conn))
+            {
+                if (_env.IsDevelopment())
+                {
+                    // fallback to localdb for development
+                    conn = "Server=DESKTOP-15F46E8\\SQLEXPRESS;Database=WebShopDb;Trusted_Connection=True;MultipleActiveResultSets=true";
+                }
+                else
+                {
+                    throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+                }
+            }
 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn));
+
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+            }).AddEntityFrameworkStores<AppDbContext>();
 
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();

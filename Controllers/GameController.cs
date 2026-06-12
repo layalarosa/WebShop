@@ -20,6 +20,13 @@ namespace WebShop.Controllers
 
         }
 
+        // GET: /Game
+        public IActionResult Index()
+        {
+            // Redirect to List to show all games when /Game is requested
+            return RedirectToAction("List");
+        }
+
         // GET: /<controller>/
         //public ViewResult List()
         //{

@@ -1,22 +1,11 @@
 ﻿@model WebShop.ViewModels.GamesListViewModel
 
-<h1>@ViewBag.CurrentCategory</h1>
-@foreach (var game in Model.Games)
-{
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="@game.ImageThumbnailUrl" alt="">
-            <div class="caption">
-                <h3 class="pull-right">@game.Price.ToString("c")</h3>
-                <h3>
-                    <h3>
-                        <a asp-controller="Game" asp-action="Details" asp-route-id="@game.GameId">@game.Name</a>
-                    </h3>
-                </h3>
-            <p>@game.ShortDescription</p>
-        </div>
-    </div>
-</div>
+<h1 class="mb-4">@ViewBag.CurrentCategory</h1>
 
-}
+<div class="row">
+    @foreach (var game in Model.Games)
+    {
+        @await Html.PartialAsync("_GameCard", game)
+    }
+</div>
 
