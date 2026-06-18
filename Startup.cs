@@ -66,6 +66,13 @@ namespace WebShop
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            // If Stripe secret is present in configuration, set it for server-side SDK usage.
+            var stripeSecret = Configuration["Stripe:SecretKey"];
+            if (!string.IsNullOrEmpty(stripeSecret))
+            {
+                Stripe.StripeConfiguration.ApiKey = stripeSecret;
+            }
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

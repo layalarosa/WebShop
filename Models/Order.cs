@@ -67,5 +67,10 @@ namespace WebShop.Models
         [BindNever]
         [ScaffoldColumn(false)]
         public DateTime OrderPlaced { get; set; }
+
+        // Payment information
+        public string PaymentProvider { get; set; }
+        public string PaymentProviderId { get; set; }
+        public string PaymentStatus { get; set; }
     }
 }
